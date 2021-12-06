@@ -5,7 +5,7 @@ import  Header from '../Header';
 const Layout = (props) => {
     const { children } = props;
     return (
-        <Container fuild="true" className="layout">
+        <Container fluid className="layout">
             <Header/>
             <Container className="content">
                 <h1>Layouts</h1>
