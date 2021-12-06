@@ -12,7 +12,7 @@ const TopBar = () => {
                      <Logo />
                   </Grid.Column>
                   <Grid.Column width={8} className="top-bar__right">
-                        <h2>Buscador</h2>
+                     <Search />
                   </Grid.Column>
               </Grid>
           </Container>
@@ -30,5 +30,11 @@ function  Logo(){
             <Image src="/logo.png" alt="gaming" />
         </a>
       </Link>
+    )
+}
+
+function  Search(){
+    return (
+        <Input  id="search-game" icon={{name: 'search'}} />
     )
 }
