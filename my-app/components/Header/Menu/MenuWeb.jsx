@@ -2,12 +2,17 @@ import React, {useState} from 'react';
 import {Container, Menu, Grid, Icon, Label, GridColumn} from 'semantic-ui-react';
 import  Link from 'next/link';
 import BasicModal from "../../Modal/BasicModal";
+import Auth from "../../Auth";
 
 const MenuWeb = () =>  {
     const [showModal, setShowModal] = useState(false);
-
+    const [titleModal, setTitleModal] = useState("Iniciar Sesiòn");
     const onShowModal = () => {
         setShowModal(true);
+    }
+
+     const onCloseModal = () => {
+        setShowModal(false);
     }
 
         return (
@@ -25,10 +30,10 @@ const MenuWeb = () =>  {
                 <BasicModal
                 show={showModal}
                 setShow={setShowModal}
-                title="Crea tu cuenta"
+                title={titleModal}
                 size="small"
                 >
-                esto es el modal basico
+                <Auth onCloseModal={onCloseModal} setTitleModal={setTitleModal}/>
                 </BasicModal>
 
             </div>
