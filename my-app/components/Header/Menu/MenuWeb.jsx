@@ -1,10 +1,15 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import {Container, Menu, Grid, Icon, Label, GridColumn} from 'semantic-ui-react';
 import  Link from 'next/link';
+import BasicModal from "../../Modal/BasicModal";
 
+const MenuWeb = () =>  {
+    const [showModal, setShowModal] = useState(false);
 
-class MenuWeb extends Component {
-    render() {
+    const onShowModal = () => {
+        setShowModal(true);
+    }
+
         return (
             <div className="menu">
                 <Container>
@@ -13,14 +18,22 @@ class MenuWeb extends Component {
                          <MenuPlatforms/>
                          </Grid.Column>
                          <Grid.Column className="menu__right" width={10}>
-                            <MenuOptions/>
+                            <MenuOptions onShowModal={onShowModal} />
                          </Grid.Column>
                      </Grid>
                 </Container>
+                <BasicModal
+                show={showModal}
+                setShow={setShowModal}
+                title="Crea tu cuenta"
+                size="small"
+                >
+                esto es el modal basico
+                </BasicModal>
+
             </div>
         );
     }
-}
 
 export default MenuWeb;
 
@@ -47,10 +60,10 @@ function  MenuPlatforms() {
         )
 }
 
-function  MenuOptions() {
+function  MenuOptions({onShowModal}) {
     return (
         <Menu>
-            <Menu.Item>
+            <Menu.Item onClick={onShowModal}>
                 <Icon name="user outline" />
                 Mi cuenta
             </Menu.Item>
