@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {Form, Button} from 'semantic-ui-react';
 
 const RegisterForm = ({showLoginForm}) => {
     return (
-        <div>
-            REGISTRO FORMULARIO
-            <button onClick={showLoginForm}>ir al login</button>
-        </div>
+            <Form className='register-form'>
+                <Form.Input name="name" type="text" placeholder="Nombre"/>
+                <Form.Input name="lastname" type="text" placeholder="Apellido"/>
+            </Form>
     );
 };
 
