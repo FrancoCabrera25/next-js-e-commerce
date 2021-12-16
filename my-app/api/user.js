@@ -1,4 +1,4 @@
-import  {URL_BASE} from '../utils/constants';
+import {URL_BASE} from '../utils/constants';
 
 export async function  registerApi(formData){
       try {
@@ -11,8 +11,7 @@ export async function  registerApi(formData){
                 body: JSON.stringify(formData)
             }
             const response = await fetch(url,params);
-            const result = await  response.json();
-            console.log(result);
+            return await response.json();
       }
       catch (e) {
               console.log(e)
