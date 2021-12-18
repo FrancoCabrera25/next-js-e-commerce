@@ -3,7 +3,7 @@ import {Form, Button} from 'semantic-ui-react';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import  {toast} from 'react-toastify'
-import {loginApi} from '../../../api/user'
+import {loginApi, resetPasswordApi} from '../../../api/user'
 import useAuth from "../../../hooks/useAuth";
 
 
@@ -28,6 +28,16 @@ const LoginForm = ({showRegisterForm, onCloseModal}) => {
         }
     })
 
+    const resetPassword = () =>{
+        formik.setErrors({});
+        const validateEmail =  Yup.string().email().required();
+        if (!validateEmail.isValidSync(formik.values.identifier)) {
+                formik.setErrors({ identifier: true });
+        }else{
+            resetPasswordApi(formik.values.identifier);
+        }
+    }
+
     return (
             <Form className="login-form" onSubmit={formik.handleSubmit}>
                     <Form.Input
@@ -48,7 +58,7 @@ const LoginForm = ({showRegisterForm, onCloseModal}) => {
                     <Button type="button" basic onClick={showRegisterForm} >Registrarse</Button>
                     <div>
                         <Button type="submit" className="submit" loading={loading}>Iniciar Sesión</Button>
-                        <Button type="button" >¿Has olvidado la contraseña?</Button>
+                        <Button type="button"  onClick={resetPassword}>¿Has olvidado la contraseña?</Button>
                     </div>
                 </div>
 
