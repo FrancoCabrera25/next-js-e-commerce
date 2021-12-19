@@ -14,7 +14,6 @@ function MyApp({Component, pageProps}) {
     const router = useRouter();
 
     useEffect(() => {
-        console.log('gettoken');
         const token = getToken();
         if (token) {
             setAuth({

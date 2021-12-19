@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Form, Button} from 'semantic-ui-react';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import  {toast} from 'react-toastify'
-import {loginApi, resetPasswordApi} from '../../../api/user'
+import {getMeApi, loginApi, resetPasswordApi} from '../../../api/user'
 import useAuth from "../../../hooks/useAuth";
 
 
 const LoginForm = ({showRegisterForm, onCloseModal}) => {
     const [loading,setLoading] = useState(false);
-    const {auth,login} = useAuth();
+    const {auth,login, logout} = useAuth();
 
     const formik = useFormik({
         initialValues: initialValues(),

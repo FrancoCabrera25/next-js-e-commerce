@@ -64,3 +64,20 @@ export async function getMeApi(logout){
 
         }
 }
+
+export async function updateApi(idUser, data,logout){
+    try{
+        const url = `${URL_BASE}/api/users/${idUser}`;
+        const params= {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            Body: JSON.stringify(data)
+        }
+        const result = await authFetch(url,params,logout);
+        return result ? result : null;
+    }catch (e){
+
+    }
+}
