@@ -6,21 +6,21 @@ import {toast} from "react-toastify";
 import { updateApi} from '../../../api/user';
 
 const ChangeNameForm = ({user, logout, setReloadUser}) => {
-    console.log('user', user);
+  //  console.log('user', user);
     const [loading, setLoading] = useState(false);
         const formik = useFormik({
-            initialValues: initialValues(user.username),
+            initialValues: initialValues(user),
             onSubmit: async (formData) => {
 
                    setLoading(true);
-                setReloadUser(true);
-                   // const response = await updateApi(user.id,formData,logout);
+                    const response = await updateApi(user.id,formData,logout);
                    // console.log('response', response);
-                   // if(response?.error){
-                   //     toast.error('error al actualizar');
-                   // }else{
-                   //     toast.success('Actualizado correctamente');
-                   // }
+                    if(response?.error){
+                        toast.error('error al actualizar');
+                    }else{
+                        setReloadUser(true);
+                        toast.success('Actualizado correctamente');
+                    }
                    setLoading(false);
             }
         })
@@ -31,10 +31,15 @@ const ChangeNameForm = ({user, logout, setReloadUser}) => {
             <Form onSubmit={formik.handleSubmit}>
                 <Form.Group widths="equal">
                     <Form.Input
-                        name="username"
+                        name="name"
                         onChange={formik.handleChange}
-                        value={formik.values.username}/>
+                        value={formik.values.name}/>
+                    <Form.Input
+                        name="lastname"
+                        onChange={formik.handleChange}
+                        value={formik.values.lastname}/>
                 </Form.Group>
+
                 <Button className="submit" type="submit" loading={loading}>Actualizar</Button>
             </Form>
         </div>
@@ -44,8 +49,9 @@ const ChangeNameForm = ({user, logout, setReloadUser}) => {
 export default ChangeNameForm;
 
 
-function initialValues(username) {
+function initialValues(user) {
     return {
-        username: username || '',
+        name: user.name || '',
+        lastname: user.lastname || '',
     }
 }

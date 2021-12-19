@@ -9,15 +9,16 @@ import {getMeApi} from '../../../api/user';
 const MenuWeb = () => {
     const [showModal, setShowModal] = useState(false);
     const [titleModal, setTitleModal] = useState("Iniciar Sesiòn");
-    const [user, setUser] = useState(undefined);
+     const [user, setUser] = useState(undefined);
     const {logout, auth} = useAuth();
 
     useEffect(() => {
-        (async () => {
+        async function fetchgetMeApi() {
             const response = await getMeApi(logout);
             setUser(response);
-        })()
-    }, [auth]);
+        }
+        fetchgetMeApi()
+    }, [auth])
 
     const onShowModal = () => {
         setShowModal(true);
@@ -99,7 +100,7 @@ function MenuOptions({onShowModal, user, logout}) {
                     <Link href="/account" >
                         <Menu.Item as="a">
                             <Icon name="user outline"/>
-                            {user.username}
+                            {user.name} {user.lastname}
                         </Menu.Item>
                     </Link>
                     <Link href="/cart" >

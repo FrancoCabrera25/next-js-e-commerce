@@ -7,6 +7,7 @@ import jwtDecode from "jwt-decode";
 import {useRouter} from 'next/router';
 import {setToken, getToken, removeToken} from '../api/token';
 import AuthContext from '../context/AuthContext';
+import {getMeApi} from "../api/user";
 
 function MyApp({Component, pageProps}) {
     const [auth, setAuth] = useState(undefined);
@@ -25,6 +26,17 @@ function MyApp({Component, pageProps}) {
         }
         setReloadUser(false);
     }, [reloadUser]);
+
+
+
+
+    // useEffect(() => {
+    //     (async () => {
+    //         const response = await getMeApi(logout);
+    //         setUser(response);
+    //     })()
+    // }, [auth]);
+
 
     const login = (token) => {
         setToken(token);
