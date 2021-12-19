@@ -73,7 +73,7 @@ export async function updateApi(idUser, data,logout){
             headers: {
                 "Content-Type": "application/json",
             },
-            Body: JSON.stringify(data)
+            body: JSON.stringify(data)
         }
         const result = await authFetch(url,params,logout);
         return result ? result : null;

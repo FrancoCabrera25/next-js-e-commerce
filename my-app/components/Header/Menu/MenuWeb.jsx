@@ -10,7 +10,7 @@ const MenuWeb = () => {
     const [showModal, setShowModal] = useState(false);
     const [titleModal, setTitleModal] = useState("Iniciar Sesiòn");
      const [user, setUser] = useState(undefined);
-    const {logout, auth} = useAuth();
+    const {logout, auth } = useAuth();
 
     useEffect(() => {
         async function fetchgetMeApi() {
